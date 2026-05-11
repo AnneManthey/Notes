@@ -15,3 +15,12 @@ function renderNotes() {
 function getNoteTemplate(note) {
     return `<p>+ ${note}</p>`;
 }
+
+function addNote(){
+    let noteInputRef = document.getElementById("noteInput");
+    let noteInput = noteInputRef.value;
+
+    notes.push(noteInput);
+    renderNotes();
+    noteInputRef.value = "";
+}
