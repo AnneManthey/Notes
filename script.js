@@ -24,3 +24,7 @@ function addNote(){
     renderNotes();
     noteInputRef.value = "";
 }
+
+function deleteNote(){
+    
+}
