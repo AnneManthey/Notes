@@ -1,5 +1,5 @@
 
-let notes = ["Haferflocken", "Klettern", "Handwerker"];
+let notes = ["Haferflocken", "Laufen", "Handwerker"];
 let titles = ["Einkaufen", "Sport", "Fenster"];
 let trashNotes = [];
 let trashTitles = [];
@@ -10,8 +10,7 @@ function renderTasks() {
     for (let indexNotes = 0; indexNotes < notes.length; indexNotes++) {
         contentRef.innerHTML += getTasksTemplate(indexNotes);
 
-    }
-    ;
+    };
 }
 
 function renderTrashTasks() {
@@ -19,8 +18,7 @@ function renderTrashTasks() {
     trashContentRef.innerHTML = "";
     for (let indexTrashNotes = 0; indexTrashNotes < trashNotes.length; indexTrashNotes++) {
         trashContentRef.innerHTML += getTrashTasksTemplate(indexTrashNotes);
-    }
-    ;
+    };
 }
 
 function getTasksTemplate(indexNotes) {
@@ -28,17 +26,18 @@ function getTasksTemplate(indexNotes) {
 }
 
 function getTrashTasksTemplate(indexTrashNotes) {
-    return `<p>${titles[indexTrashNotes]}: ${trashNotes[indexTrashNotes]} <button onclick="deleteNote(${indexTrashNotes})">x</button></p>`;
+    return `<p>${trashTitles[indexTrashNotes]}: ${trashNotes[indexTrashNotes]} <button onclick="deleteNote(${indexTrashNotes})">x</button></p>`;
 }
 
 function addTask() {
     let titleInputRef = document.getElementById("titleInput");
+    let titleInput = titleInputRef.value;
     let noteInputRef = document.getElementById("noteInput");
     let noteInput = noteInputRef.value;
-    let titleInput = titleInputRef.value;
 
-    notes.push(noteInput);
     titles.push(titleInput);
+    notes.push(noteInput);
+
 
     renderTasks();
     noteInputRef.value = "";
@@ -46,16 +45,20 @@ function addTask() {
 }
 
 function noteToTrash(indexNotes) {
-    let trashNote = notes.splice(indexNotes, 1);
     let trashTitle = titles.splice(indexNotes, 1);
-    trashNotes.push(trashNote);
+    trashTitles.push(trashTitle[0]);
+
+    let trashNote = notes.splice(indexNotes, 1);
+    trashNotes.push(trashNote[0]);
+
     renderTasks();
     renderTrashTasks();
 }
 
 function deleteNote(indexTrashNotes) {
+    let titleDelete = trashTitles.splice(indexTrashNotes, 1);
     let noteDelete = trashNotes.splice(indexTrashNotes, 1);
-    let titleDelete =
+    
     renderTasks();
     renderTrashTasks();
 }
@@ -66,11 +69,11 @@ function deleteNote(indexTrashNotes) {
 
 
 
-function saveData(){
+function saveData() {
     let titleRef = document.getElementById("titleInput");
     let noteRef = document.getElementById("noteInput");
 
-    if (titleRef.value != "" && noteRef.value != ""){
+    if (titleRef.value != "" && noteRef.value != "") {
         titles.push(titleRef.value);
         notes.push(noteRef.value);
     }
