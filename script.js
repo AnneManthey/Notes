@@ -5,18 +5,20 @@ let trashNotes = [];
 let trashTitles = [];
 
 function renderTasks() {
+
+    getFromLocalStorage();
     let contentRef = document.getElementById('content');
     contentRef.innerHTML = "";
-    //getFromLocalStorage();
+
     for (let indexNotes = 0; indexNotes < notes.length; indexNotes++) {
         contentRef.innerHTML += getTasksTemplate(indexNotes);
-
     };
 
-    
 }
 
 function renderTrashTasks() {
+
+    getFromLocalStorage();
     let trashContentRef = document.getElementById('trash_content');
     trashContentRef.innerHTML = "";
     for (let indexTrashNotes = 0; indexTrashNotes < trashNotes.length; indexTrashNotes++) {
@@ -41,7 +43,6 @@ function addTask() {
     titles.push(titleInput);
     notes.push(noteInput);
 
-
     renderTasks();
     noteInputRef.value = "";
     titleInputRef.value = "";
@@ -64,7 +65,7 @@ function noteToTrash(indexNotes) {
 function deleteNote(indexTrashNotes) {
     let titleDelete = trashTitles.splice(indexTrashNotes, 1);
     let noteDelete = trashNotes.splice(indexTrashNotes, 1);
-    
+
     renderTasks();
     renderTrashTasks();
 }
@@ -84,7 +85,6 @@ function safeData() {
         notes.push(noteRef.value);
     }
     safeToLocalStorage();
-    //renderNotes();
     titleRef.value = "";
     noteRef.value = "";
 
@@ -99,15 +99,20 @@ function safeToLocalStorage() {
 };
 
 function getFromLocalStorage() {
-    let myNotes = JSON.parse(localStorage.getItem("notes"));
-    let myTrashNotes = JSON.parse(localStorage.getItem("trashNotes"));
 
-    let myTitles = JSON.parse(localStorage.getItem("titles"));
-    let myTrashTitles = JSON.parse(localStorage.getItem("trashTitles"));
+    let myNotesArray = JSON.parse(localStorage.getItem("notes"));
+    let myTrashNotesArray = JSON.parse(localStorage.getItem("trashNotes"));
 
-    notes = myNotes;
-    trashNotes = myTrash;
+    let myTitlesArray = JSON.parse(localStorage.getItem("titles"));
+    let myTrashTitlesArray = JSON.parse(localStorage.getItem("trashTitles"));
 
-    titles = myTitles;
-    trashTitles = myTrashTitles;
+    if (myNotesArray != null) {
+        notes = myNotesArray;
+        trashNotes = myTrashNotesArray;
+
+        titles = myTitlesArray;
+        trashTitles = myTrashTitlesArray;
+    }
+
+
 };
