@@ -1,19 +1,31 @@
 
 let notes = ["Einkaufen", "Sport", "Handwerker"];
-
+let trashNotes = [];
 
 function renderNotes() {
     let contentRef = document.getElementById('content');
     contentRef.innerHTML = "";
     for (let indexNotes = 0; indexNotes < notes.length; indexNotes++) {
-        const note = notes[indexNotes];
         contentRef.innerHTML += getNoteTemplate(indexNotes);
 
     }
 }
 
+function renderTrashNotes(){
+    let trashContentRef = document.getElementById('trash_content');
+    trashContentRef.innerHTML = "";
+    for (let indexTrashNotes = 0; indexTrashNotes < trashNotes.length; indexTrashNotes++) {
+        trashContentRef.innerHTML += getTrashNoteTemplate(indexTrashNotes);
+
+    }
+}
+
 function getNoteTemplate(indexNotes) {
-    return `<p>+ ${notes[indexNotes]} <button onclick="deleteNote(${indexNotes})">x</button></p>`;
+    return `<p>+ ${notes[indexNotes]} <button onclick="noteToTrash(${indexNotes})">x</button></p>`;
+}
+
+function getTrashNoteTemplate(indexTrashNotes) {
+    return `<p>+ ${trashNotes[indexTrashNotes]} <button onclick="deleteNote(${indexTrashNotes})">x</button></p>`;
 }
 
 function addNote(){
@@ -25,7 +37,16 @@ function addNote(){
     noteInputRef.value = "";
 }
 
-function deleteNote(indexNotes){
-    notes.splice(indexNotes, 1);
+function noteToTrash(indexNotes){
+    let trashNote = notes.splice(indexNotes, 1);
+    trashNotes.push(trashNote);
     renderNotes();
+    renderTrashNotes();
+}
+
+function deleteNote(indexTrashNotes){
+    let noteDelete = trashNotes.splice(indexTrashNotes);
+    renderNotes();
+    renderTrashNotes();
+
 }
