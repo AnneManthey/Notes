@@ -18,6 +18,7 @@ function renderTrashNotes() {
     trashContentRef.innerHTML = "";
     for (let indexTrashNotes = 0; indexTrashNotes < trashNotes.length; indexTrashNotes++) {
         trashContentRef.innerHTML += getTrashNoteTemplate(indexTrashNotes);
+
     }
     ;
 }
