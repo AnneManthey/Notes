@@ -1,4 +1,5 @@
 
+const errorMessage = document.getElementById("error");
 let notes = ["Haferflocken", "Laufen", "Handwerker"];
 let titles = ["Einkaufen", "Sport", "Fenster"];
 let trashNotes = [];
@@ -9,6 +10,7 @@ function renderTasks() {
     getFromLocalStorage();
     let contentRef = document.getElementById('content');
     contentRef.innerHTML = "";
+    errorMessage.innerHTML = "";
 
     for (let indexNotes = 0; indexNotes < notes.length; indexNotes++) {
         contentRef.innerHTML += getTasksTemplate(indexNotes);
@@ -27,6 +29,7 @@ function renderTrashTasks() {
 }
 
 function getTasksTemplate(indexNotes) {
+    errorMessage.innerHTML = `<p>Bitte Titel und Beschreibung einfügen</p>`
     return `<p> ${titles[indexNotes]}: ${notes[indexNotes]} <button onclick="noteToTrash(${indexNotes})">x</button></p>`;
 }
 
@@ -39,15 +42,21 @@ function addTask() {
     let titleInput = titleInputRef.value;
     let noteInputRef = document.getElementById("noteInput");
     let noteInput = noteInputRef.value;
+    if ((titleInput.length > 0) && (noteInput.length > 0)) {
 
-    titles.push(titleInput);
-    notes.push(noteInput);
 
-    renderTasks();
-    noteInputRef.value = "";
-    titleInputRef.value = "";
+        // titles.push(titleInput);
+        // notes.push(noteInput);
+        safeData();
+        renderTasks();
+        noteInputRef.value = "";
+        titleInputRef.value = "";
+        errorMessage.classList.remove("show_error");
 
-    safeData();
+    }
+    else {
+        errorMessage.classList.add("show_error");
+    }
 }
 
 function noteToTrash(indexNotes) {
@@ -65,7 +74,7 @@ function noteToTrash(indexNotes) {
 function deleteNote(indexTrashNotes) {
     let titleDelete = trashTitles.splice(indexTrashNotes, 1);
     let noteDelete = trashNotes.splice(indexTrashNotes, 1);
-
+    safeData();
     renderTasks();
     renderTrashTasks();
 }

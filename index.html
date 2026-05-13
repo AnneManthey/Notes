@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/styles/standard.css">
 
-    <script src="script.js"></script>
+    
 </head>
 <body onload="renderTasks()">
     <h1>Notizblock</h1>
@@ -16,6 +16,7 @@
     <label for="fname">Inhalt:</label>
     <input id="noteInput" type="text">
     <button onclick="addTask()">Notiz speichern</button>
+    <div id="error" class="error"></div>
     <h2>notes</h2>
     <div id="content"></div>
     <h2>trash</h2>
@@ -23,4 +24,5 @@
     
 
 </body>
+<script src="script.js"></script>
 </html>
