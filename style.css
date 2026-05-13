@@ -32,7 +32,6 @@ h2 {
     padding: 2px;
     border-radius: 5px;
     background-color: rgb(103, 158, 19);
-
 }
 
 .task_section {
@@ -61,8 +60,6 @@ h2 {
     display: flex;
     width: 160px;
     justify-content: space-between;
-    
-    
 }
 .task_btn {
     background-color: brown;
