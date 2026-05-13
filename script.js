@@ -32,6 +32,7 @@ function getTasksTemplate(indexNotes) {
             <h3> ${titles[indexNotes]}</h3>
             <p> ${notes[indexNotes]}</p>
             <button class="task_btn" onclick="noteToTrash(${indexNotes})">erledigt</button>
+            <button class="task_btn" onclick="deleteNote(${indexNotes})">löschen</button>
             </div>`;
 }
 
@@ -39,7 +40,7 @@ function getTrashTasksTemplate(indexTrashNotes) {
     return `<div class="task_container">
             <h3>${trashTitles[indexTrashNotes]}</h3>
             <p> ${trashNotes[indexTrashNotes]}</p>
-            <button class="task_btn" onclick="deleteNote(${indexTrashNotes})">löschen</button>
+            <button class="task_btn" onclick="deleteTrashNote(${indexTrashNotes})">löschen</button>
             </div>`;
 }
 
@@ -70,8 +71,15 @@ function noteToTrash(indexNotes) {
     renderTasks();
     renderTrashTasks();
 }
+function deleteNote(indexNotes) {
+    let titleDelete = titles.splice(indexNotes, 1);
+    let noteDelete = notes.splice(indexNotes, 1);
+    safeData();
+    renderTasks();
+    renderTrashTasks();
+}
 
-function deleteNote(indexTrashNotes) {
+function deleteTrashNote(indexTrashNotes) {
     let titleDelete = trashTitles.splice(indexTrashNotes, 1);
     let noteDelete = trashNotes.splice(indexTrashNotes, 1);
     safeData();
