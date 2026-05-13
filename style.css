@@ -23,8 +23,15 @@ h2 {
     gap: 8px;
 }
 
+.input_label{
+    font-size: 18px;
+}
+
 .input_btn {
     width: 150px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: rgb(103, 158, 19);
 
 }
 
@@ -45,6 +52,18 @@ h2 {
     border-radius: 16px;
 }
 
+.task_container p{
+    padding: 0px 16px;
+    text-align: center;
+}
+
+.task_btn_wrapper{
+    display: flex;
+    width: 160px;
+    justify-content: space-between;
+    
+    
+}
 .task_btn {
     background-color: brown;
     border-radius: 16px;

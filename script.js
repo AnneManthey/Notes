@@ -1,7 +1,7 @@
 
 const errorMessage = document.getElementById("error");
-let notes = ["Haferflocken", "Laufen", "Handwerker"];
-let titles = ["Einkaufen", "Sport", "Fenster"];
+let notes = ["Haferflocken", "Laufen", "Fenster"];
+let titles = ["Einkaufen", "Sport", "Handwerker"];
 let trashNotes = [];
 let trashTitles = [];
 
@@ -27,12 +27,12 @@ function renderTrashTasks() {
 }
 
 function getTasksTemplate(indexNotes) {
-    errorMessage.innerHTML = `<p>Bitte Titel und Beschreibung einfügen</p>`
+    errorMessage.innerHTML = `<p>Bitte Überschrift und Beschreibung einfügen</p>`
     return `<div class="task_container">
             <h3> ${titles[indexNotes]}</h3>
             <p> ${notes[indexNotes]}</p>
-            <button class="task_btn" onclick="noteToTrash(${indexNotes})">erledigt</button>
-            <button class="task_btn" onclick="deleteNote(${indexNotes})">löschen</button>
+            <div class="task_btn_wrapper"><button class="task_btn" onclick="noteToTrash(${indexNotes})">erledigt</button>
+            <button class="task_btn" onclick="deleteNote(${indexNotes})">löschen</button></div>
             </div>`;
 }
 
@@ -40,7 +40,7 @@ function getTrashTasksTemplate(indexTrashNotes) {
     return `<div class="task_container">
             <h3>${trashTitles[indexTrashNotes]}</h3>
             <p> ${trashNotes[indexTrashNotes]}</p>
-            <button class="task_btn" onclick="deleteTrashNote(${indexTrashNotes})">löschen</button>
+            <div class="task_btn_wrapper"><button class="task_btn" onclick="deleteTrashNote(${indexTrashNotes})">löschen</button></div>
             </div>`;
 }
 
