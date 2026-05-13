@@ -1,9 +1,17 @@
 
 const errorMessage = document.getElementById("error");
-let notes = ["Haferflocken", "Laufen", "Fenster"];
-let titles = ["Einkaufen", "Sport", "Handwerker"];
-let trashNotes = [];
-let trashTitles = [];
+
+// let notes = ["Haferflocken", "Laufen", "Fenster"];
+// let titles = ["Einkaufen", "Sport", "Handwerker"];
+// let trashNotes = [];
+// let trashTitles = [];
+
+let allNotes = {
+    'notes':["Haferflocken", "Laufen", "Fenster"],
+    'titles':["Einkaufen", "Sport", "Handwerker"],
+    'trashNotes':[],
+    'trashTitles':[]
+}
 
 function renderTasks() {
     getFromLocalStorage();
@@ -11,7 +19,7 @@ function renderTasks() {
     contentRef.innerHTML = "";
     errorMessage.innerHTML = "";
 
-    for (let indexNotes = 0; indexNotes < notes.length; indexNotes++) {
+    for (let indexNotes = 0; indexNotes < allNotes.notes.length; indexNotes++) {
         contentRef.innerHTML += getTasksTemplate(indexNotes);
     };
 }
@@ -21,7 +29,7 @@ function renderTrashTasks() {
     let trashContentRef = document.getElementById('trash_content');
     trashContentRef.innerHTML = "";
 
-    for (let indexTrashNotes = 0; indexTrashNotes < trashNotes.length; indexTrashNotes++) {
+    for (let indexTrashNotes = 0; indexTrashNotes < allNotes.trashNotes.length; indexTrashNotes++) {
         trashContentRef.innerHTML += getTrashTasksTemplate(indexTrashNotes);
     };
 }
@@ -29,8 +37,8 @@ function renderTrashTasks() {
 function getTasksTemplate(indexNotes) {
     errorMessage.innerHTML = `<p>Bitte Überschrift und Beschreibung einfügen</p>`
     return `<div class="task_container">
-            <h3> ${titles[indexNotes]}</h3>
-            <p> ${notes[indexNotes]}</p>
+            <h3> ${allNotes.titles[indexNotes]}</h3>
+            <p> ${allNotes.notes[indexNotes]}</p>
             <div class="task_btn_wrapper"><button class="task_btn" onclick="noteToTrash(${indexNotes})">erledigt</button>
             <button class="task_btn" onclick="deleteNote(${indexNotes})">löschen</button></div>
             </div>`;
@@ -38,8 +46,8 @@ function getTasksTemplate(indexNotes) {
 
 function getTrashTasksTemplate(indexTrashNotes) {
     return `<div class="task_container">
-            <h3>${trashTitles[indexTrashNotes]}</h3>
-            <p> ${trashNotes[indexTrashNotes]}</p>
+            <h3>${allNotes.trashTitles[indexTrashNotes]}</h3>
+            <p> ${allNotes.trashNotes[indexTrashNotes]}</p>
             <div class="task_btn_wrapper"><button class="task_btn" onclick="deleteTrashNote(${indexTrashNotes})">löschen</button></div>
             </div>`;
 }
@@ -62,26 +70,26 @@ function addTask() {
 }
 
 function noteToTrash(indexNotes) {
-    let trashTitle = titles.splice(indexNotes, 1);
-    trashTitles.push(trashTitle[0]);
-    let trashNote = notes.splice(indexNotes, 1);
-    trashNotes.push(trashNote[0]);
+    let trashTitle = allNotes.titles.splice(indexNotes, 1);
+    allNotes.trashTitles.push(trashTitle);   //[0]
+    let trashNote = allNotes.notes.splice(indexNotes, 1);
+    allNotes.trashNotes.push(trashNote);  //[0]
 
     safeData();
     renderTasks();
     renderTrashTasks();
 }
 function deleteNote(indexNotes) {
-    let titleDelete = titles.splice(indexNotes, 1);
-    let noteDelete = notes.splice(indexNotes, 1);
+    let titleDelete = allNotes.titles.splice(indexNotes, 1);
+    let noteDelete = allNotes.notes.splice(indexNotes, 1);
     safeData();
     renderTasks();
     renderTrashTasks();
 }
 
 function deleteTrashNote(indexTrashNotes) {
-    let titleDelete = trashTitles.splice(indexTrashNotes, 1);
-    let noteDelete = trashNotes.splice(indexTrashNotes, 1);
+    let titleDelete = allNotes.trashTitles.splice(indexTrashNotes, 1);
+    let noteDelete = allNotes.trashNotes.splice(indexTrashNotes, 1);
     safeData();
     renderTasks();
     renderTrashTasks();
@@ -92,8 +100,8 @@ function safeData() {
     let noteRef = document.getElementById("noteInput");
 
     if (titleRef.value != "" && noteRef.value != "") {
-        titles.push(titleRef.value);
-        notes.push(noteRef.value);
+        allNotes.titles.push(titleRef.value);
+        allNotes.notes.push(noteRef.value);
     }
     safeToLocalStorage();
     titleRef.value = "";
@@ -101,22 +109,22 @@ function safeData() {
 }
 
 function safeToLocalStorage() {
-    localStorage.setItem("notes", JSON.stringify(notes));
-    localStorage.setItem("trashNotes", JSON.stringify(trashNotes));
-    localStorage.setItem("titles", JSON.stringify(titles));
-    localStorage.setItem("trashTitles", JSON.stringify(trashTitles));
+    localStorage.setItem("allNotes.notes", JSON.stringify(allNotes.notes));
+    localStorage.setItem("allNotes.trashNotes", JSON.stringify(allNotes.trashNotes));
+    localStorage.setItem("allNotes.titles", JSON.stringify(allNotes.titles));
+    localStorage.setItem("allNotes.trashTitles", JSON.stringify(allNotes.trashTitles));
 };
 
 function getFromLocalStorage() {
-    let myNotesArray = JSON.parse(localStorage.getItem("notes"));
-    let myTrashNotesArray = JSON.parse(localStorage.getItem("trashNotes"));
-    let myTitlesArray = JSON.parse(localStorage.getItem("titles"));
-    let myTrashTitlesArray = JSON.parse(localStorage.getItem("trashTitles"));
+    let myNotesArray = JSON.parse(localStorage.getItem("allNotes.notes"));
+    let myTrashNotesArray = JSON.parse(localStorage.getItem("allNotes.trashNotes"));
+    let myTitlesArray = JSON.parse(localStorage.getItem("allNotes.titles"));
+    let myTrashTitlesArray = JSON.parse(localStorage.getItem("allNotes.trashTitles"));
 
     if (myNotesArray != null) {
-        notes = myNotesArray;
-        trashNotes = myTrashNotesArray;
-        titles = myTitlesArray;
-        trashTitles = myTrashTitlesArray;
+        allNotes.notes = myNotesArray;
+        allNotes.trashNotes = myTrashNotesArray;
+        allNotes.titles = myTitlesArray;
+        allNotes.trashTitles = myTrashTitlesArray;
     }
 };
