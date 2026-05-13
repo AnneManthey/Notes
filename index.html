@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,34 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./assets/styles/standard.css">
 
-    
+
 </head>
+
 <body onload="renderTasks()">
     <h1>Notizblock</h1>
-    <label for="fname">Überschrift:</label>
-    <input id="titleInput" type="text">
-    <label for="fname">Inhalt:</label>
-    <input id="noteInput" type="text">
-    <button onclick="addTask()">Notiz speichern</button>
-    <div id="error" class="error"></div>
-    <h2>notes</h2>
-    <div id="content"></div>
-    <h2>trash</h2>
-    <div id="trash_content"></div>
-    
+    <section class="input_section">
+        <label for="fname">Überschrift:</label>
+        <input id="titleInput" type="text">
+        <label for="fname">Inhalt:</label>
+        <input id="noteInput" type="text">
+        <button class="input_btn" onclick="addTask()">Notiz speichern</button>
+        <div id="error" class="error"></div>
+    </section>
+
+    <section>
+        <h2>Aufgaben</h2>
+        <section id="content" class="task_section">
+        </section>
+        <h2>Erledigt</h2>
+        <section id="trash_content" class="task_section">
+        </section>
+
+
+    </section>
+
+
 
 </body>
 <script src="script.js"></script>
+
 </html>

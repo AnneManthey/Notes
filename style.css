@@ -1,9 +1,51 @@
-.error{
+.error {
     color: red;
     display: none;
+}
+
+.show_error {
+    display: block;
+}
+
+h1 {
+    padding: 24px;
+}
+
+h2 {
+    padding: 24px;
+}
+
+.input_section {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 24px;
+    gap: 8px;
+}
+
+.input_btn {
+    width: 150px;
 
 }
 
-.show_error{
-    display: block;
+.task_section {
+    display: flex;
+    gap: 16px;
+    padding-left: 24px;
+}
+
+.task_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 200px;
+    width: 200px;
+    background-color: grey;
+    border-radius: 16px;
+}
+
+.task_btn {
+    background-color: brown;
+    border-radius: 16px;
 }

@@ -28,11 +28,19 @@ function renderTrashTasks() {
 
 function getTasksTemplate(indexNotes) {
     errorMessage.innerHTML = `<p>Bitte Titel und Beschreibung einfügen</p>`
-    return `<p> ${titles[indexNotes]}: ${notes[indexNotes]} <button onclick="noteToTrash(${indexNotes})">x</button></p>`;
+    return `<div class="task_container">
+            <h3> ${titles[indexNotes]}</h3>
+            <p> ${notes[indexNotes]}</p>
+            <button class="task_btn" onclick="noteToTrash(${indexNotes})">erledigt</button>
+            </div>`;
 }
 
 function getTrashTasksTemplate(indexTrashNotes) {
-    return `<p>${trashTitles[indexTrashNotes]}: ${trashNotes[indexTrashNotes]} <button onclick="deleteNote(${indexTrashNotes})">x</button></p>`;
+    return `<div class="task_container">
+            <h3>${trashTitles[indexTrashNotes]}</h3>
+            <p> ${trashNotes[indexTrashNotes]}</p>
+            <button class="task_btn" onclick="deleteNote(${indexTrashNotes})">löschen</button>
+            </div>`;
 }
 
 function addTask() {
