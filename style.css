@@ -38,6 +38,7 @@ h2 {
     display: flex;
     gap: 16px;
     padding-left: 24px;
+    flex-wrap: wrap;
 }
 
 .task_container {
