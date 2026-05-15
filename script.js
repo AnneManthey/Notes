@@ -46,24 +46,16 @@ function getTasksTemplate(indexNotes) {
             </div>`;
 }
 
-// onclick="moveNote(${indexNotes}, 'notes', 'trashnotes')"
-//onclick="noteToTrash(${indexNotes})"
-
-
-
 function getTrashTasksTemplate(indexTrashNotes, indexNotes) {
     return `<div class="task_container">
             <h3>${allNotes.trashNotesTitles[indexTrashNotes]}</h3>
             <p> ${allNotes.trashNotes[indexTrashNotes]}</p>
             <div class="task_btn_wrapper">
-            
             <button class="task_btn" onclick="deleteTrashNote(${indexTrashNotes})">löschen</button>
             <button class="task_btn" onclick="moveNote(${indexNotes}, 'trashNotes', 'notes')">zurück</button>
             </div>
             </div>`;
 }
-
-//<button class="task_btn" onclick="moveNote(${indexNotes}, 'trashnotes', 'notes')">zurück</button>
 
 function addTask() {
     let titleInputRef = document.getElementById("titleInput");
@@ -82,14 +74,6 @@ function addTask() {
     }
 }
 
-// function noteToTrash(indexNotes) {
-//     let trashTitle = allNotes.notesTitles.splice(indexNotes, 1);
-//     allNotes.trashNotesTitles.push(trashTitle);   //[0]
-//     let trashNote = allNotes.notes.splice(indexNotes, 1);
-//     allNotes.trashNotes.push(trashNote);  //[0]
-//     renderAllNotes();
-// }
-
 function deleteNote(indexNotes) {
     let titleDelete = allNotes.notesTitles.splice(indexNotes, 1);
     let noteDelete = allNotes.notes.splice(indexNotes, 1);
@@ -102,12 +86,11 @@ function deleteTrashNote(indexTrashNotes) {
     renderAllNotes();
 }
 
-// Move All-in-one function
+// Move All-in-one
 
 function moveNote(indexNote, startKey, destinationKey) {
     let note = allNotes[startKey].splice(indexNote, 1);
     allNotes[destinationKey].push(note[0]);
-
     let noteTitle = allNotes[startKey + "Titles"].splice(indexNote, 1);
     allNotes[destinationKey + "Titles"].push(noteTitle[0]);
     renderAllNotes();
