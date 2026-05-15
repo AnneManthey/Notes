@@ -58,6 +58,7 @@ function getTrashTasksTemplate(indexTrashNotes, indexNotes) {
             <div class="task_btn_wrapper">
             
             <button class="task_btn" onclick="deleteTrashNote(${indexTrashNotes})">löschen</button>
+            <button class="task_btn" onclick="moveNote(${indexNotes}, 'trashNotes', 'notes')">zurück</button>
             </div>
             </div>`;
 }
