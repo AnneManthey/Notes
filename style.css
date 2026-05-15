@@ -15,6 +15,10 @@ h2 {
     padding: 24px;
 }
 
+h3{
+    padding: 8px;
+}
+
 .input_section {
     display: flex;
     flex-direction: column;
@@ -23,15 +27,28 @@ h2 {
     gap: 8px;
 }
 
-.input_label{
+.input_label {
     font-size: 18px;
+}
+
+input[type=text] {
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: rgb(232, 230, 230);
+    cursor: text;
+    padding: 8px;
 }
 
 .input_btn {
     width: 150px;
-    padding: 2px;
+    padding: 5px;
     border-radius: 5px;
-    background-color: rgb(103, 158, 19);
+    background-color: rgb(129, 152, 94);
+    font-weight: bold;
+}
+
+.input_btn:hover{
+    background-color: rgb(100, 121, 68);
 }
 
 .task_section {
@@ -44,25 +61,33 @@ h2 {
 .task_container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     height: 200px;
     width: 200px;
     background-color: grey;
     border-radius: 16px;
-}
-
-.task_container p{
-    padding: 0px 16px;
+    border: 2px solid black;
     text-align: center;
 }
 
-.task_btn_wrapper{
+.task_container p {
+    text-align: center;
+}
+
+.task_btn_wrapper {
     display: flex;
     width: 160px;
-    justify-content: space-between;
+    justify-content:space-between;
+    align-items: flex-end;
+    padding: 16px 0px;
 }
+
 .task_btn {
     background-color: brown;
     border-radius: 16px;
+}
+
+.task_btn:hover{
+    background-color: rgb(114, 25, 25);
 }
