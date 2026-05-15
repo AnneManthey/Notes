@@ -43,12 +43,12 @@ input[type=text] {
     width: 150px;
     padding: 5px;
     border-radius: 5px;
-    background-color: rgb(129, 152, 94);
+    background-color: rgb(153, 220, 52);
     font-weight: bold;
 }
 
 .input_btn:hover{
-    background-color: rgb(100, 121, 68);
+    background-color: rgb(104, 145, 42);
 }
 
 .task_section {
@@ -65,7 +65,7 @@ input[type=text] {
     align-items: center;
     height: 200px;
     width: 200px;
-    background-color: grey;
+    background-color: rgba(174, 219, 10, 0.5);
     border-radius: 16px;
     border: 2px solid black;
     text-align: center;
