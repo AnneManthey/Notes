@@ -85,43 +85,36 @@ function noteToTrash(indexNotes) {
     allNotes.trashTitles.push(trashTitle);   //[0]
     let trashNote = allNotes.notes.splice(indexNotes, 1);
     allNotes.trashNotes.push(trashNote);  //[0]
-
-    safeData();
-    renderTasks();
-    renderTrashTasks();
+    renderAllNotes();
 }
 function deleteNote(indexNotes) {
     let titleDelete = allNotes.titles.splice(indexNotes, 1);
     let noteDelete = allNotes.notes.splice(indexNotes, 1);
-    safeData();
-    renderTasks();
-    renderTrashTasks();
+    renderAllNotes();
 }
 
 function deleteTrashNote(indexTrashNotes) {
     let titleDelete = allNotes.trashTitles.splice(indexTrashNotes, 1);
     let noteDelete = allNotes.trashNotes.splice(indexTrashNotes, 1);
-    safeData();
-    renderTasks();
-    renderTrashTasks();
+    renderAllNotes();
 }
 
 // Move All-in-one function
 
 function moveNote(indexNote, startKey, destinationKey) {
     let note = allNotes[startKey].splice(indexNote, 1);
-    allNotes[destinationKey].push(notes);
+    allNotes[destinationKey].push(note[0]);
 
-    let notesTitle = allNotes[startKey + "Titles"].splice(indexNote, 1);
-    allNotes[destinationKey + "Titles"].push(notesTitle[0]);
+    let noteTitle = allNotes[startKey + "Titles"].splice(indexNote, 1);
+    allNotes[destinationKey + "Titles"].push(noteTitle[0]);
+    renderAllNotes();
+}
 
+function renderAllNotes() {
     safeData();
     renderTasks();
     renderTrashTasks();
-
 }
-
-
 
 function safeData() {
     let titleRef = document.getElementById("titleInput");
